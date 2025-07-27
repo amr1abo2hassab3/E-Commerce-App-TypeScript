@@ -1,1 +1,17 @@
+/* app.css */
 @import "tailwindcss";
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    /* light */
+    --color-main: #0AAD0A;
+    --color-light: white;
+    --color-blue: #1976D2;
+    --color-secondary: #C7D5F1;
+    /* dark */
+    --color-main-dark: #057a05;
+    --color-secondary-dark: #243c5a;
+    --color-dark: #111827;
+}

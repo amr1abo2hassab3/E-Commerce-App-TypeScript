@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: 'https://note-sigma-black.vercel.app/api/v1/',
+    baseURL: 'https://ecommerce.routemisr.com',
     timeout: 0,
 });
   
