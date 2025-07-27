@@ -4,7 +4,7 @@ interface DivProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-const Div = ({ children, ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
+const Div = ({ children, ...rest }: DivProps) => {
   return <div {...rest}>{children}</div>;
 };
 

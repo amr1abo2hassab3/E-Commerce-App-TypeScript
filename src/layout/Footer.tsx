@@ -54,22 +54,13 @@ const Footer = () => {
               Industries
             </p>
             <div className="flex flex-col items-start mt-5 space-y-2">
-              <span
-                href="#"
-                className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"
-              >
+              <span className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
                 Retail &amp; E-Commerce
               </span>
-              <span
-                href="#"
-                className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"
-              >
+              <span className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
                 Information Technology
               </span>
-              <span
-                href="#"
-                className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"
-              >
+              <span className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
                 Finance &amp; Insurance
               </span>
             </div>
