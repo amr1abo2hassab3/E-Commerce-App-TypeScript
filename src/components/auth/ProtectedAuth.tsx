@@ -4,12 +4,12 @@ import { Navigate } from "react-router-dom";
 
 interface ProtectedAuthProps {
   children: ReactNode;
-  path: string;
+  redirect: string;
 }
 
-const ProtectedAuth = ({ children, path }: ProtectedAuthProps) => {
+const ProtectedAuth = ({ children, redirect }: ProtectedAuthProps) => {
   const isAuthenticated = CookieServices.get("userData");
-  if (isAuthenticated) return <Navigate to={path} />;
+  if (isAuthenticated) return <Navigate to={redirect} />;
   return children;
 };
 

@@ -1,4 +1,4 @@
-import type { ILoginInput, IRegisterInput, ISettings } from "../interfaces";
+import type { ILoginInput, IRegisterInput, IResetPasswordInput, ISettings } from "../interfaces";
 import { handleLogOut } from "../lib/utils";
 
 // Login input data
@@ -52,6 +52,24 @@ export const RegisterForm: IRegisterInput[] = [
         
     },
    
+]
+
+// reset password data
+
+export const ResetPasswordForm: IResetPasswordInput[] = [
+     {
+        name: "email",
+        placeholder: "Email address",
+        type: "email" ,
+        autoComplete: "userName" ,
+    },
+      {
+        name: "newPassword",
+        placeholder: "New Password",
+        type: "password",
+        autoComplete: "current-password"
+        
+    },
 ]
 
 // navbar 

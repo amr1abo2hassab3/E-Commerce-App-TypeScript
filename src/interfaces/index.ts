@@ -1,6 +1,6 @@
-import type { LoginFieldName , RegisterFieldName } from "../types";
+import type { LoginFieldName , RegisterFieldName, ResetPasswordFieldName } from "../types";
 
-
+// authentication 
 export interface ILoginInput {
     name: LoginFieldName;
     placeholder: string;
@@ -54,8 +54,21 @@ export interface ISettings {
 
 
 // forgot password
-
 export interface IForgotValues {
   email: string;
 }
+
+// reset password 
+export interface IRestPasswordValues {
+  email: string;
+  newPassword: string;
+}
+
+export interface IResetPasswordInput {
+    name: ResetPasswordFieldName;
+    placeholder: string;
+    type: string;
+    autoComplete?: string;
+}
+
 

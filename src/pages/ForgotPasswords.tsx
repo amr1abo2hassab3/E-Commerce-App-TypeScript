@@ -12,27 +12,40 @@ import InputErrorMessage from "../components/ui/InputErroMessage";
 import { userSentEmail } from "../app/features/ForgotPasswordsSlice";
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
+import Paragraph from "../components/ui/Paragraph";
+import EmailIcon from "@mui/icons-material/Email";
 
 const ForgotPasswords = () => {
+  // Hook to navigate programmatically
   const navigate = useNavigate();
+
+  // Redux dispatch hook for async actions
   const dispatch = useDispatch<AppDispatch>();
+
+  // Get state from Redux (email status, error, and loading)
   const { data, error, loading } = useSelector(
     (state: RootState) => state.sentEmail
   );
+
+  // Handle form submit and send email
   const handleSendEmail = async (values: IForgotValues) => {
+    // Dispatch the async thunk action with the form values
     const resultAction = await dispatch(userSentEmail(values));
+
+    // If request is successful, navigate to the "Check Code" page after delay
     if (userSentEmail.fulfilled.match(resultAction)) {
       setTimeout(() => {
-        navigate("/verifyCode");
+        navigate("/checkCode");
       }, 2000);
     }
   };
 
+  // Initialize Formik for form handling
   const { errors, handleBlur, handleChange, handleSubmit, values, touched } =
     useFormik({
-      initialValues: { email: "" },
-      validationSchema: sentSchema,
-      onSubmit: handleSendEmail,
+      initialValues: { email: "" }, // initial form value
+      validationSchema: sentSchema, // validation schema using Yup
+      onSubmit: handleSendEmail, // what happens on form submit
     });
 
   return (
@@ -43,21 +56,21 @@ const ForgotPasswords = () => {
       >
         Reset password
       </Heading>
-      <p className="text-dark dark:text-light font-bold mt-3">
+      <Paragraph className="text-dark dark:text-light font-bold mt-3">
         Fill up the form to reset the password
-      </p>
+      </Paragraph>
       {data?.message && (
-        <p className="text-main text-xl text-center py-5 font-bold mt-3">
-          {data?.message} <i className="fa-solid fa-envelope"></i>
-        </p>
+        <Paragraph className="text-main text-xl text-center py-5 font-bold mt-3">
+          {data?.message} <EmailIcon />
+        </Paragraph>
       )}
 
       <Form className="my-10" onSubmit={handleSubmit}>
         <Div className="flex flex-col space-y-5">
           <label htmlFor="email">
-            <p className=" text-dark dark:text-light pb-2 font-semibold">
+            <Paragraph className=" text-dark dark:text-light pb-2 font-semibold">
               Email address
-            </p>
+            </Paragraph>
             <Input
               value={values.email}
               onBlur={handleBlur}
@@ -72,12 +85,12 @@ const ForgotPasswords = () => {
               <InputErrorMessage msg={errors.email} />
             )}
             {error && (
-              <p className="text-red-500 text-sm font-bold p-4">
+              <Paragraph className="text-red-500 text-sm font-bold p-4">
                 Email is not vaild Go to{" "}
                 <Link className="text-green" to={"/register"}>
                   Register now
                 </Link>
-              </p>
+              </Paragraph>
             )}
           </label>
           <Button
@@ -89,12 +102,12 @@ const ForgotPasswords = () => {
             ) : (
               <>
                 <span className="mr-1 font-medium">Enter Email</span>
-                <i className="fa-solid fa-envelope"></i>
+                <EmailIcon className="text-white" />
               </>
             )}
           </Button>
 
-          <p className="text-center dark:text-light text-dark">
+          <Paragraph className="text-center dark:text-light text-dark">
             Not registered yet?{" "}
             <Link
               to="/register"
@@ -118,7 +131,7 @@ const ForgotPasswords = () => {
                 </svg>
               </span>
             </Link>
-          </p>
+          </Paragraph>
         </Div>
       </Form>
     </Div>

@@ -9,6 +9,8 @@ import ProtectedRoute from "../components/auth/ProtectedRoute";
 import ProtectedAuth from "../components/auth/ProtectedAuth";
 import RegisterPage from "../pages/Register";
 import ForgotPasswords from "../pages/ForgotPasswords";
+import { CheckCode } from "../pages/CheckCode";
+import { ResetPassword } from "../pages/ResetPassword ";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +21,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <ProtectedRoute path="/login">
+          <ProtectedRoute redirect="/login">
             <HomePage />
           </ProtectedRoute>
         ),
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: (
-          <ProtectedAuth path="/">
+          <ProtectedAuth redirect="/">
             <LoginPage />
           </ProtectedAuth>
         ),
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: (
-          <ProtectedAuth path="/">
+          <ProtectedAuth redirect="/">
             <RegisterPage />
           </ProtectedAuth>
         ),
@@ -43,15 +45,31 @@ const router = createBrowserRouter([
       {
         path: "sendemail",
         element: (
-          <ProtectedAuth path="/">
+          <ProtectedAuth redirect="/">
             <ForgotPasswords />
+          </ProtectedAuth>
+        ),
+      },
+      {
+        path: "checkCode",
+        element: (
+          <ProtectedAuth redirect="/">
+            <CheckCode />
+          </ProtectedAuth>
+        ),
+      },
+      {
+        path: "resetPassword",
+        element: (
+          <ProtectedAuth redirect="/">
+            <ResetPassword />
           </ProtectedAuth>
         ),
       },
       {
         path: "products",
         element: (
-          <ProtectedRoute path="/login">
+          <ProtectedRoute redirect="/login">
             <ProductsPage />
           </ProtectedRoute>
         ),

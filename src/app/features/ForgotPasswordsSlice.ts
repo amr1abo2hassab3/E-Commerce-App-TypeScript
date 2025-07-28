@@ -58,7 +58,10 @@ export const ForgotPasswordsSlice = createSlice({
         (state, action: PayloadAction<IApiError>) => {
           state.loading = false;
             state.data = action.payload;
-            toast.success(`${action.payload?.message}`);
+          toast.success(`${action.payload?.message}`);
+          setTimeout(() => {
+            state.data = null;
+          } , 2000)
         }
       )
       .addCase(userSentEmail.rejected, (state, action) => {
