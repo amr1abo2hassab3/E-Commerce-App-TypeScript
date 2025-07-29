@@ -1,6 +1,8 @@
 import type { ILoginInput, IRegisterInput, IResetPasswordInput, ISettings } from "../interfaces";
 import { handleLogOut } from "../lib/utils";
-
+import img1 from "../assets/images/slider-image-1.jpeg";
+import img2 from "../assets/images/slider-image-2.jpeg";
+import img3 from "../assets/images/slider-image-3.jpeg";
 // Login input data
 export const LoginForm: ILoginInput[] = [
     {
@@ -55,7 +57,6 @@ export const RegisterForm: IRegisterInput[] = [
 ]
 
 // reset password data
-
 export const ResetPasswordForm: IResetPasswordInput[] = [
      {
         name: "email",
@@ -82,6 +83,11 @@ export const settings: ISettings[] = [
     fn: handleLogOut,
   },
 ];
+
+// home
+// images slider
+
+export const images: string[] = [img1 , img2 , img3]
 
 
 // cookies key

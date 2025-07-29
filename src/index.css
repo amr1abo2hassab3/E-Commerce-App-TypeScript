@@ -15,3 +15,7 @@
     --color-secondary-dark: #243c5a;
     --color-dark: #111827;
 }
+
+.dark .slick-dots li button:before {
+    color: white !important;
+}

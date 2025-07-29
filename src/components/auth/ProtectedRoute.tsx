@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import CookieServices from "../../Services/CookieServices";
 import { Navigate } from "react-router-dom";
+import { cookiesUserDataKey } from "../../data";
 
 interface ProtectedAuthProps {
   children: ReactNode;
@@ -8,7 +9,7 @@ interface ProtectedAuthProps {
 }
 
 const ProtectedRoute = ({ children, redirect }: ProtectedAuthProps) => {
-  const isAuthenticated = CookieServices.get("userData");
+  const isAuthenticated = CookieServices.get(cookiesUserDataKey);
 
   if (!isAuthenticated) return <Navigate to={redirect} replace />;
   return children;
