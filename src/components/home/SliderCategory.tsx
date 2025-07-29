@@ -3,7 +3,10 @@ import Heading from "../ui/Heading";
 import Div from "../ui/Div";
 import Img from "../ui/Img";
 import useGetDataQuery from "../../hooks/useGetDataQuery";
-import type { category, RespnseCategory } from "../../interfaces/categorys";
+import type {
+  category,
+  RespnseCategory,
+} from "../../interfaces/categorysInterfaces";
 import CategorySkeleton from "./../skeleton/CategorySkeleton";
 const settings = {
   dots: true,
@@ -75,7 +78,7 @@ export const CategoriesSlider = () => {
         shop popular categories
       </Heading>
       {isError && (
-        <p className="text-center text-xl font-bold">{error.message} ❌😫</p>
+        <p className="text-center text-xl font-bold">{error?.message} ❌😫</p>
       )}
       <Slider {...settings}>{renderCategories}</Slider>
     </Div>

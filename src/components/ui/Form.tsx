@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Form = ({ children, ...rest }: FormProps) => {

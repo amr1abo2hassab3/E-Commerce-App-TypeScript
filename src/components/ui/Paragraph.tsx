@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Paragraph = ({ children, ...rest }: ParagraphProps) => {

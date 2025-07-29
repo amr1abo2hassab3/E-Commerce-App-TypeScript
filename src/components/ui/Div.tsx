@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 interface DivProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Div = ({ children, ...rest }: DivProps) => {
