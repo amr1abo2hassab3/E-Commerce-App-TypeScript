@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import type { IProduct } from "../interfaces/productsInterfaces";
 import Div from "./ui/Div";
 import Img from "./ui/Img";
-import { lazy } from "react";
 
 interface CardSearchProps {
   products: IProduct[];
