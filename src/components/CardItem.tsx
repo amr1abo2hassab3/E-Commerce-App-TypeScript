@@ -7,6 +7,7 @@ import Div from "./ui/Div";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
 import Heading from "./ui/Heading";
+import useAddToCart from "./../hooks/useAddToCart";
 
 interface CardItemProps {
   product: IProduct;
@@ -14,9 +15,11 @@ interface CardItemProps {
 }
 
 const CardItem = ({ product, color = "bg-blue" }: CardItemProps) => {
+  const handleAddToCart = useAddToCart();
+
   return (
     <Link
-      to={`/productDetails/${product._id}/${product.category._id}`}
+      to={`/productDetails/${product._id}`}
       className={`w-full min-h-115 shadow-lg  relative shadow-custom rounded-md transition-all duration-300 ease-in-out cursor-pointer overflow-hidden hover:rotate-[3deg] hover:scale-[0.90] dark:bg-gray-800`}
     >
       {/* Favorite Icon */}
@@ -67,7 +70,13 @@ const CardItem = ({ product, color = "bg-blue" }: CardItemProps) => {
 
         {/* Actions */}
         <Div className="flex items-center justify-between mt-5">
-          <Button className="bg-blue text-white py-1.5 px-4 text-sm rounded-md transition-all duration-300 font-bold border border-transparent hover:!bg-white hover:!text-black hover:!border-blue cursor-pointer dark:hover:bg-white dark:hover:text-black">
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddToCart({ productId: product._id });
+            }}
+            className="bg-blue text-white py-1.5 px-4 text-sm rounded-md transition-all duration-300 font-bold border border-transparent hover:!bg-white hover:!text-black hover:!border-blue cursor-pointer dark:hover:bg-white dark:hover:text-black"
+          >
             Add to cart <i className="fa-solid fa-cart-shopping"></i>
           </Button>
           <Span className="text-gray-700 font-bold dark:text-yellow-400">

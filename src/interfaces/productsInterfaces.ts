@@ -53,3 +53,14 @@ export interface Brand {
   slug: string
   image: string
 }
+
+
+export interface ResponseProductDetails {
+  data: IProduct
+}
+
+
+
+
+
+

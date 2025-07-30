@@ -11,6 +11,7 @@ import RegisterPage from "../pages/Register";
 import ForgotPasswords from "../pages/ForgotPasswords";
 import { CheckCode } from "../pages/CheckCode";
 import { ResetPassword } from "../pages/ResetPassword ";
+import ProductDetails from "../pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute redirect="/login">
             <ProductsPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "productDetails/:id",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <ProductDetails />
           </ProtectedRoute>
         ),
       },

@@ -20,7 +20,7 @@ const HomePage = () => {
       key={cat._id}
       id={cat._id}
       category={cat.name}
-      queryKey={[`get${cat.name}`, cat._id]}
+      queryKey={[`${cat.name}`, cat._id]}
     />
   ));
   return (
