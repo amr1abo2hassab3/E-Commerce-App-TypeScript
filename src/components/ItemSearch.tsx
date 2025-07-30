@@ -1,15 +1,23 @@
+import type { IProduct } from "../interfaces/productsInterfaces";
+import { CardSearch } from "./CardSearch";
 import Button from "./ui/Button";
 import Div from "./ui/Div";
 import Form from "./ui/Form";
 import Input from "./ui/Input";
 
 interface ItemSearchProps {
-    
+  setKeyWord: React.Dispatch<React.SetStateAction<string>>;
+  keyWord: string;
+  products: IProduct[];
 }
 
-export const ItemSearch = ({}: ItemSearchProps) => {
+export const ItemSearch = ({
+  keyWord,
+  setKeyWord,
+  products,
+}: ItemSearchProps) => {
   return (
-    <Div className="max-w-2xl mx-auto mt-10">
+    <Div className="max-w-2xl mx-auto mt-10 ">
       <Form>
         <label htmlFor="default-search" className="sr-only">
           Search
@@ -32,8 +40,8 @@ export const ItemSearch = ({}: ItemSearchProps) => {
             </svg>
           </Div>
           <Input
-            // value={keyWord}
-            // onChange={(e) => setKeyWord(e.target.value)}
+            value={keyWord}
+            onChange={(e) => setKeyWord(e.target.value)}
             type="search"
             id="default-search"
             className="block p-4 pl-10 w-full text-sm text-dark bg-light border border-light rounded-lg 
@@ -49,6 +57,7 @@ export const ItemSearch = ({}: ItemSearchProps) => {
           >
             Search
           </Button>
+          <CardSearch products={products} keyWord={keyWord} />
         </Div>
       </Form>
     </Div>

@@ -19,3 +19,22 @@
 .dark .slick-dots li button:before {
     color: white !important;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-blue);
+    border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,14 +1,48 @@
+import { useEffect, useState } from "react";
 import { ItemSearch } from "../ItemSearch";
 import Button from "../ui/Button";
 import Div from "../ui/Div";
 import Heading from "../ui/Heading";
 import Paragraph from "../ui/Paragraph";
 import Span from "../ui/Span";
+import useGetDataQuery from "../../hooks/useGetDataQuery";
+import type {
+  IProduct,
+  ProductsResponse,
+} from "../../interfaces/productsInterfaces";
 
 export default function HeroSection() {
+  const [keyWord, setKeyWord] = useState<string>("");
+  const [products, setProducts] = useState([] as IProduct[]);
+
+  // handler
+  const { data } = useGetDataQuery<ProductsResponse>({
+    queryKey: ["getAllProducts"],
+    url: `/api/v1/products`,
+  });
+
+  useEffect(() => {
+    if (data?.data) {
+      setProducts(data.data);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (!data?.data) return;
+    const filteredProducts = data?.data.filter((product) =>
+      product.title.trim().toLowerCase().includes(keyWord.toLowerCase().trim())
+    );
+    setProducts(filteredProducts);
+  }, [keyWord, data]);
+  console.log(products);
+
   return (
     <>
-      <ItemSearch />
+      <ItemSearch
+        keyWord={keyWord}
+        setKeyWord={setKeyWord}
+        products={products}
+      />
       <Div className="max-w-3xl mx-auto py-20 md:py-36 text-center relative px-4">
         <Heading
           as="h1"
