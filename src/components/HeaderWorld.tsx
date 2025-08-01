@@ -22,7 +22,7 @@ export const HeaderWorled = () => {
               Explore The World of Advanced
             </Heading>
             <Link
-              to={"/category"}
+              to={"/products"}
               className="bg-blue hover:text-black hover:!border-blue border-[1px] hover:!bg-white py-[14px] px-10 rounded text-white font-bold transition-all duration-300 border-transparent mt-4 inline-block"
             >
               shop now

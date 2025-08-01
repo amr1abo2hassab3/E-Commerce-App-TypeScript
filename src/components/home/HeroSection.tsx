@@ -34,7 +34,6 @@ export default function HeroSection() {
     );
     setProducts(filteredProducts);
   }, [keyWord, data]);
-  console.log(products);
 
   return (
     <>

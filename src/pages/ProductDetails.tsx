@@ -3,6 +3,7 @@ import { Suspense, lazy } from "react";
 import type { ResponseProductDetails } from "../interfaces/productsInterfaces";
 import useGetDataQuery from "../hooks/useGetDataQuery";
 import ProductDetailsSkeleton from "../components/productDetails/ProductDetailsSkeleton";
+import CardItemSkeleton from "../components/skeleton/CardItemSkeleton";
 
 // lazy load components
 const ProductDetailsContent = lazy(
@@ -18,7 +19,7 @@ export default function ProductDetails() {
   // state or hooks
   const { id } = useParams<{ id: string }>();
   // handler
-  const { data } = useGetDataQuery<ResponseProductDetails>({
+  const { data, isLoading } = useGetDataQuery<ResponseProductDetails>({
     queryKey: ["GetProductDetails", id || ""],
     url: `/api/v1/products/${id}`,
   });
@@ -27,11 +28,12 @@ export default function ProductDetails() {
 
   return (
     <section>
+      {isLoading && <ProductDetailsSkeleton />}
       <Suspense fallback={<ProductDetailsSkeleton />}>
         {product && <ProductDetailsContent product={product} />}
       </Suspense>
 
-      <Suspense fallback={<div>Loading related products...</div>}>
+      <Suspense fallback={<CardItemSkeleton />}>
         {product && (
           <NewCollection
             id={product?.category._id}

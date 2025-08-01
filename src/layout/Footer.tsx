@@ -8,7 +8,7 @@ import Paragraph from "../components/ui/Paragraph";
 
 const Footer = () => {
   return (
-    <footer className="bg-light shadow-lg border border-blue dark:bg-dark">
+    <footer className="bg-light shadow-lg relative z-40 border border-blue dark:bg-dark">
       <Div className="container px-6 py-12 mx-auto">
         <Div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
           <Div className="sm:col-span-2">

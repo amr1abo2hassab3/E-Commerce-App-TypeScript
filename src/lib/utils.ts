@@ -24,3 +24,20 @@ export function handleLogOut() {
   CookieServices.remove("userData");
   window.location.reload();
 }
+
+
+/**
+ * Adds or removes an ID from the array depending on whether it already exists.
+ * 
+ * @param array - The original array of string IDs.
+ * @param id - The ID to toggle (add if not found, remove if found).
+ * @returns A new array with the ID toggled.
+ */
+export function toggleId(array: string[], id: string): string[] {
+  return array.includes(id)
+    ? array.filter(item => item !== id)
+    : [...array, id];
+}
+
+
+

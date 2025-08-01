@@ -1,16 +1,17 @@
-export interface RespnseCategory {
+export interface BrandResponse {
   results: number
   metadata: Metadata
-  data: category[]
+  data: Brand[]
 }
 
 export interface Metadata {
   currentPage: number
   numberOfPages: number
   limit: number
+  nextPage: number
 }
 
-export interface category {
+export interface Brand {
   _id: string
   name: string
   slug: string
@@ -18,5 +19,3 @@ export interface category {
   createdAt: string
   updatedAt: string
 }
-
-
