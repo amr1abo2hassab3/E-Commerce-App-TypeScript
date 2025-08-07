@@ -7,6 +7,7 @@ import Span from "../ui/Span";
 import type { ProductsResponse } from "../../interfaces/productsInterfaces";
 import CardItemSkeleton from "../skeleton/CardItemSkeleton";
 import Pagination from "../ui/Pagination";
+import PaginationSkeleton from "../skeleton/PaginationSkeleton";
 
 const CardItem = lazy(() => import("../CardItem"));
 
@@ -36,11 +37,14 @@ export const NewCollection = ({
 
   if (isLoading) {
     return (
-      <Div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 mt-20">
-        {Array.from({ length: pageLimit }).map((_, i) => (
-          <CardItemSkeleton key={i} />
-        ))}
-      </Div>
+      <>
+        <Div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 mt-20">
+          {Array.from({ length: pageLimit }).map((_, i) => (
+            <CardItemSkeleton key={i} />
+          ))}
+        </Div>
+        <PaginationSkeleton />
+      </>
     );
   }
 
@@ -64,6 +68,7 @@ export const NewCollection = ({
       <Pagination
         pageNumber={pageNumber}
         pageLimit={pageLimit}
+        loading={isLoading}
         setPageNumber={setPageNumber}
         totalPages={totalPages}
         totalCount={totalCount}

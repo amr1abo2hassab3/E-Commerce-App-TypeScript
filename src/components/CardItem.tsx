@@ -7,7 +7,7 @@ import Div from "./ui/Div";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
 import Heading from "./ui/Heading";
-import useAddToCart from "./../hooks/useAddToCart";
+import useAddToCart from "../hooks/Cart/useAddToCart";
 
 interface CardItemProps {
   product: IProduct;

@@ -6,6 +6,7 @@ import useGetDataQuery from "../hooks/useGetDataQuery";
 import type { ProductsResponse } from "../interfaces/productsInterfaces";
 import CardItemSkeleton from "../components/skeleton/CardItemSkeleton";
 import Pagination from "../components/ui/Pagination";
+import MessageUi from "../components/ui/MessageUi";
 const CardItem = lazy(() => import("../components/CardItem"));
 
 const ProductsPage = () => {
@@ -71,7 +72,7 @@ const ProductsPage = () => {
         </svg>
       </Button>
 
-      <Div className="relative  custom-scrollbar min-h-screen rounded-lg shadow-2xl">
+      <Div className="relative custom-scrollbar min-h-screen rounded-lg shadow-2xl">
         <Sidebar
           setSortPrice={setSortPrice}
           sortPrice={sortPrice}
@@ -79,25 +80,32 @@ const ProductsPage = () => {
           setSelectedCategories={setSelectedCategories}
           sidebarOpen={sidebarOpen}
         />
-        <Div className="px-4 sm:ml-64 text-white">
-          {" "}
+        <Div className="px-4 sm:ml-64 text-white ">
           <Div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 mt-20">
-            {isLoading
-              ? Array.from({ length: pageLimit }).map((_, i) => (
-                  <CardItemSkeleton key={i} />
-                ))
-              : dataProducts?.map((product) => (
-                  <Suspense key={product._id} fallback={<CardItemSkeleton />}>
-                    <CardItem
-                      key={product._id}
-                      product={product}
-                      color="#1976D2"
-                    />
-                  </Suspense>
-                ))}
+            {isLoading ? (
+              Array.from({ length: pageLimit }).map((_, i) => (
+                <CardItemSkeleton key={i} />
+              ))
+            ) : dataProducts?.length ? (
+              dataProducts?.map((product) => (
+                <Suspense key={product._id} fallback={<CardItemSkeleton />}>
+                  <CardItem
+                    key={product._id}
+                    product={product}
+                    color="#1976D2"
+                  />
+                </Suspense>
+              ))
+            ) : (
+              <MessageUi
+                heading="No products found"
+                description=" Try adjusting your filters or check back later."
+              />
+            )}
           </Div>
-          {totalCount > pageLimit && (
+          {isLoading ? (
             <Pagination
+              loading={isLoading}
               pageNumber={pageNumber}
               pageLimit={pageLimit}
               setPageNumber={setPageNumber}
@@ -105,6 +113,17 @@ const ProductsPage = () => {
               totalCount={totalCount}
               setPageLimit={setPageLimit}
             />
+          ) : (
+            totalCount > pageLimit && (
+              <Pagination
+                pageNumber={pageNumber}
+                pageLimit={pageLimit}
+                setPageNumber={setPageNumber}
+                totalPages={totalPages}
+                totalCount={totalCount}
+                setPageLimit={setPageLimit}
+              />
+            )
           )}
         </Div>
       </Div>

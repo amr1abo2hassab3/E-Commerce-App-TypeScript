@@ -1,8 +1,11 @@
+import { useState } from "react";
 import useGetDataQuery from "../../hooks/useGetDataQuery";
 import type { BrandResponse } from "../../interfaces/brandInterfaces";
 import type { RespnseCategory } from "../../interfaces/categorysInterfaces";
 import { toggleId } from "../../lib/utils";
 import SidebarSkeletonList from "../skeleton/SidebarSkeletonItem";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Div from "../ui/Div";
 import Heading from "../ui/Heading";
 import Input from "../ui/Input";
@@ -22,6 +25,11 @@ const Sidebar = ({
   setSortPrice,
   sortPrice,
 }: SidebarProps) => {
+  //
+  // state or hooks
+  const [showCategories, setShowCategories] = useState<boolean>(true);
+  const [showBrands, setShowBrands] = useState<boolean>(true);
+
   // handler
   const { data: categoryData, isLoading: isCategoriesLoading } =
     useGetDataQuery<RespnseCategory>({
@@ -104,20 +112,31 @@ const Sidebar = ({
             <option value="-price">High to Low</option>
           </select>
         </Div>
-        <Heading className="text-blue  text-xl font-bold lg:text-2xl my-4">
+        <Heading
+          className="text-blue text-xl font-bold lg:text-2xl my-4 cursor-pointer flex justify-between items-center"
+          onClick={() => setShowCategories((prev) => !prev)}
+        >
           Categories
+          {showCategories ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </Heading>
-        <ul className="space-y-2 font-medium">
-          {" "}
-          {isCategoriesLoading ? <SidebarSkeletonList /> : renderCategories}
-        </ul>
-        <Heading className="text-blue  text-xl font-bold lg:text-2xl my-4">
+        {showCategories && (
+          <ul className="space-y-2 font-medium">
+            {isCategoriesLoading ? <SidebarSkeletonList /> : renderCategories}
+          </ul>
+        )}
+        {/* Brands */}
+        <Heading
+          className="text-blue text-xl font-bold lg:text-2xl my-4 cursor-pointer flex justify-between items-center"
+          onClick={() => setShowBrands((prev) => !prev)}
+        >
           Brands
+          {showCategories ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </Heading>
-        <ul className="space-y-2 font-medium">
-          {" "}
-          {isBrandsLoading ? <SidebarSkeletonList /> : renderBrands}
-        </ul>
+        {showBrands && (
+          <ul className="space-y-2 font-medium">
+            {isBrandsLoading ? <SidebarSkeletonList /> : renderBrands}
+          </ul>
+        )}
       </Div>
     </aside>
   );

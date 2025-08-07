@@ -2,6 +2,7 @@ import ReactPaginate from "react-paginate";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Div from "./Div";
+import PaginationSkeleton from "../skeleton/PaginationSkeleton";
 
 interface PaginationProps {
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
@@ -9,6 +10,7 @@ interface PaginationProps {
   pageNumber: number;
   pageLimit: number;
   totalCount: number;
+  loading?: boolean;
   textContenet?: string;
   setPageLimit: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -16,6 +18,7 @@ interface PaginationProps {
 const Pagination = ({
   pageNumber,
   textContenet,
+  loading,
   setPageNumber,
   totalPages,
   pageLimit,
@@ -25,6 +28,8 @@ const Pagination = ({
   const handlePageClick = (page: { selected: number }) => {
     setPageNumber(page.selected + 1);
   };
+
+  if (loading) return <PaginationSkeleton />;
 
   return (
     <Div className="flex flex-col md:flex-row justify-between items-center px-4 py-6 gap-4 border-t mt-12 dark:border-gray-700">

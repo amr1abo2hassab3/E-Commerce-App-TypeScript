@@ -2,6 +2,7 @@ import clsx from "clsx";
 import type { ClassValue } from "clsx";
 import {  twMerge } from 'tailwind-merge'
 import CookieServices from "../Services/CookieServices";
+import { cookiesUserDataKey } from "../data";
 
 export function tailwindCMerge(...inputs:ClassValue[]) {
     return twMerge(clsx(inputs))
@@ -21,7 +22,7 @@ document.documentElement.classList.toggle(
 
 // handle log out
 export function handleLogOut() {
-  CookieServices.remove("userData");
+  CookieServices.remove(cookiesUserDataKey);
   window.location.reload();
 }
 

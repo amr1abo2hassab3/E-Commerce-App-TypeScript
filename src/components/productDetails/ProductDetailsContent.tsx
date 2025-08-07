@@ -7,7 +7,7 @@ import type { IProduct } from "../../interfaces/productsInterfaces";
 import StarIcon from "@mui/icons-material/Star";
 import Button from "../ui/Button";
 import { useState } from "react";
-import useAddToCart from "../../hooks/useAddToCart";
+import useAddToCart from "../../hooks/Cart/useAddToCart";
 
 interface ProductDetailsContentProps {
   product: IProduct;

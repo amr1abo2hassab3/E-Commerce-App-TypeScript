@@ -27,7 +27,7 @@ export default function ProductDetails() {
   const product = data?.data;
 
   return (
-    <section>
+    <section className="mx-auto container">
       {isLoading && <ProductDetailsSkeleton />}
       <Suspense fallback={<ProductDetailsSkeleton />}>
         {product && <ProductDetailsContent product={product} />}

@@ -2,7 +2,7 @@ import Div from "../ui/Div";
 
 const CardItemSkeleton = () => {
   return (
-    <Div className="w-full min-h-115 animate-pulse shadow-custom rounded-md overflow-hidden bg-gray-200 dark:bg-gray-800 transition-all duration-300 ease-in-out">
+    <Div className="w-full my-5 min-h-115 animate-pulse shadow-custom rounded-md overflow-hidden bg-gray-200 dark:bg-gray-800 transition-all duration-300 ease-in-out">
       {/* Favorite Icon Placeholder */}
       <Div className="absolute top-4 right-4 w-[50px] h-[50px] bg-gray-300 dark:bg-gray-700 rounded-full" />
 

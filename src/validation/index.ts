@@ -35,4 +35,14 @@ export const sentSchema =  Yup.object().shape({
 export const resetPasswordSchema = Yup.object().shape({
     email,
     newPassword: password ,
+});
+  
+export const createOrderSchema = Yup.object().shape({
+    details: Yup.string()
+      .min(5, "details must be at last 5 characters")
+      .required("Details is required"),
+    phone: Yup.string()
+      .matches(/^(\+02)?01[0125][0-9]{8}$/, "Enter number vaild ")
+      .required("phone is required"),
+    city: Yup.string().required("City is required"),
   });

@@ -1,12 +1,12 @@
 import { toast } from 'react-toastify';
-import { addToCart } from '../app/features/CartSlice';
 import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '../app/store';
-import type { ICartValues } from '../interfaces/cartInterfaces';
+import type { AppDispatch } from '../../app/store';
+import type { CartValues } from '../../interfaces/cartInterfaces';
+import { addToCart } from '../../app/features/CartSlice/actions/addToCart';
 
 const useAddToCart = () => {
   const dispatch = useDispatch<AppDispatch>();
-  return  async (value: ICartValues) => {
+  return  async (value: CartValues) => {
     const resultAction = dispatch(addToCart(value));
     await toast.promise(
       resultAction,

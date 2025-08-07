@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import loginSlice from "./features/LoginSlice";
 import RegisterSlice from "./features/RegisterSlice";
 import ForgotPasswordsSlice from "./features/ForgotPasswordsSlice";
-import CartSlice from "./features/CartSlice";
+import CartSlice from "./features/CartSlice/CartSlice";
 
 export const store = configureStore({
   reducer: {

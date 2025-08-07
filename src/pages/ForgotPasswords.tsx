@@ -14,6 +14,7 @@ import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import Paragraph from "../components/ui/Paragraph";
 import EmailIcon from "@mui/icons-material/Email";
+import Span from "../components/ui/Span";
 
 const ForgotPasswords = () => {
   // Hook to navigate programmatically
@@ -101,7 +102,7 @@ const ForgotPasswords = () => {
               <LoadingSpinner />
             ) : (
               <>
-                <span className="mr-1 font-medium">Enter Email</span>
+                <Span className="mr-1 font-medium">Enter Email</Span>
                 <EmailIcon className="text-white" />
               </>
             )}
@@ -113,8 +114,8 @@ const ForgotPasswords = () => {
               to="/register"
               className="text-blue-400 duration-300 hover:text-blue font-medium inline-flex space-x-1 items-center"
             >
-              <span className="font-bold">Register now </span>
-              <span>
+              <Span className="font-bold">Register now </Span>
+              <Span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4"
@@ -129,7 +130,7 @@ const ForgotPasswords = () => {
                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
-              </span>
+              </Span>
             </Link>
           </Paragraph>
         </Div>
