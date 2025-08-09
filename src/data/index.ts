@@ -5,10 +5,14 @@ import type {
   IResetPasswordInput,
   ISettings,
 } from "../interfaces";
-import { handleLogOut } from "../lib/utils";
 import img1 from "../assets/images/slider-image-1.jpeg";
 import img2 from "../assets/images/slider-image-2.jpeg";
 import img3 from "../assets/images/slider-image-3.jpeg";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LockResetIcon from '@mui/icons-material/LockReset';
 // Login input data
 export const LoginForm: ILoginInput[] = [
   {
@@ -76,17 +80,34 @@ export const ResetPasswordForm: IResetPasswordInput[] = [
 // navbar
 export const settings: ISettings[] = [
   {
-    name: "Account",
+    name: "cart",
+    path: "/cart",
+    icon: ShoppingCartIcon,  
   },
   {
-    name: "Logout",
-    fn: handleLogOut,
+    name: "wish List",
+    path: "/wishList",
+    icon: FavoriteBorderIcon,
+  },
+  {
+    name: "Orders",
+    path: "/allorders",
+    icon: ListAltIcon,
+  },
+  {
+    name: "Update Account",
+    path: "/update_account",
+    icon: AccountCircleIcon,
+  },
+  {
+    name: "Change Password",
+    path: "/change_my_password",
+    icon: LockResetIcon,
   },
 ];
 
 // home
 // images slider
-
 export const images: string[] = [img1, img2, img3];
 
 // cookies key

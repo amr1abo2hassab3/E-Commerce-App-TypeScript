@@ -1,177 +1,110 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import { NavLink } from "react-router-dom";
+import logo from "../assets/images/freshcart-logo.svg";
+import { useState } from "react";
+import Div from "../components/ui/Div";
+import Img from "../components/ui/Img";
+import Button from "../components/ui/Button";
+import { useSelector } from "react-redux";
+import type { RootState } from "../app/store";
+import { handleLogOut } from "../lib/utils";
+import ChangeMode from "../components/ChangeMode";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { settings } from "../data";
-import type { ISettings } from "../interfaces";
-import { Link } from "react-router-dom";
+import DropAccont from "../components/DropAccont";
+import Span from "../components/ui/Span";
 
 const pages = [
   { name: "home", to: "/" },
   { name: "products", to: "/products" },
+  { name: "category", to: "/category" },
+  { name: "brands", to: "/brands" },
 ];
 
-function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const { userData } = useSelector((state: RootState) => state.global);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // render
+  const renderNavLinks = pages.map((link) => (
+    <li key={link.name}>
+      <NavLink
+        to={link.to}
+        className="block capitalize duration-200 rounded py-2 px-4 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+      >
+        {link.name}
+      </NavLink>
+    </li>
+  ));
 
   return (
-    <AppBar position="static" className="!bg-blue dark:!bg-dark">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+    <nav className="bg-blue dark:bg-dark static w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+      <Div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <Div className="flex relative items-center space-x-3 rtl:space-x-reverse">
+          <Img src={logo} className="h-8" alt="Logo" />
+          <ChangeMode
+            isDarkMode={isDarkMode}
+            setIsDarkMode={setIsDarkMode}
+            setMobileMenuOpen={setMobileMenuOpen}
+          />
+        </Div>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {page.name}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex", gap: "15px" },
-            }}
-          >
-            {pages.map((page) => (
-              <Link
-                to={page.to}
-                key={page.name}
-                onClick={handleCloseNavMenu}
-                className="my-2 text-white block"
-              >
-                {page.name}
-              </Link>
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting: ISettings) => (
-                <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    <span onClick={setting.fn}> {setting.name}</span>
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+        <Button
+          onClick={() => {
+            setMobileMenuOpen(!mobileMenuOpen);
+            setIsDarkMode(false);
+          }}
+          className="md:hidden p-2 ml-11  text-gray-500 hover:bg-gray-100 rounded-lg focus:outline-none"
+        >
+          <MenuIcon fontSize="medium" />
+        </Button>
+
+        {mobileMenuOpen && (
+          <Div className="absolute top-16 left-0 w-full bg-white dark:bg-gray-900 shadow-lg md:hidden">
+            <ul className="flex flex-col space-y-2 p-4">
+              {renderNavLinks}
+              {!userData?.token ? (
+                <>
+                  <li>
+                    <NavLink
+                      to="/login"
+                      className="block py-2 px-4 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/register"
+                      className="block py-2 px-4 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      Register
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <Span
+                    onClick={handleLogOut}
+                    className="block py-2 px-4 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
+                  >
+                    Logout
+                  </Span>
+                </li>
+              )}
+            </ul>
+          </Div>
+        )}
+
+        <Div className="hidden md:flex md:items-center md:space-x-8">
+          <ul className="flex space-x-3 xl:space-x-8 font-medium">
+            {renderNavLinks}
+          </ul>
+        </Div>
+
+        <DropAccont userData={userData} />
+      </Div>
+    </nav>
   );
-}
+};
+
 export default Navbar;

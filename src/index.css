@@ -38,3 +38,10 @@
     background: #555;
 }
 
+.dark .active {
+    background-color: #1e2939;
+}
+
+.active {
+    background-color: #f6f3f4;
+}

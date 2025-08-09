@@ -1,9 +1,11 @@
+import type { ElementType } from "react";
 import type {
   CreateOrderFieldName,
   LoginFieldName,
   RegisterFieldName,
   ResetPasswordFieldName,
 } from "../types";
+
 
 // authentication
 export interface ILoginInput {
@@ -64,6 +66,8 @@ export interface IApiError {
 
 export interface ISettings {
   name: string;
+  path?: string;
+  icon?: ElementType;
   fn?: () => void;
 }
 

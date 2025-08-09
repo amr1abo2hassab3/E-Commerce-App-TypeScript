@@ -8,23 +8,56 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
 import Heading from "./ui/Heading";
 import useAddToCart from "../hooks/Cart/useAddToCart";
+import { useDispatch } from "react-redux";
+import type { CartValues } from "../interfaces/cartInterfaces";
+import { addToWishList } from "../app/features/wishListSlice/actions/addToWishList";
+import type { AppDispatch } from "../app/store";
+import { removeItemFromWishList } from "../app/features/wishListSlice/actions/removeFromWishlist";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface CardItemProps {
   product: IProduct;
   color: string;
+  isFavorit?: boolean;
 }
 
-const CardItem = ({ product, color = "bg-blue" }: CardItemProps) => {
+const CardItem = ({
+  product,
+  color = "bg-blue",
+  isFavorit = false,
+}: CardItemProps) => {
   const handleAddToCart = useAddToCart();
+  const dispatch = useDispatch<AppDispatch>();
+  const queryClient = useQueryClient();
 
+  // Handle add or remove product from wishlist when user clicks the wishlist button.
+  const handleAddOrRemove = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    values: CartValues
+  ) => {
+    e.preventDefault();
+    if (isFavorit) {
+      dispatch(removeItemFromWishList(values));
+      queryClient.invalidateQueries({ queryKey: ["getAllWishlistProducts"] });
+    } else dispatch(addToWishList(values));
+  };
   return (
     <Link
       to={`/productDetails/${product._id}`}
       className={`w-full min-h-115 shadow-lg  relative shadow-custom rounded-md transition-all duration-300 ease-in-out cursor-pointer overflow-hidden hover:rotate-[3deg] hover:scale-[0.90] dark:bg-gray-800`}
     >
       {/* Favorite Icon */}
-      <Div className="absolute transition duration-200 group flex items-center justify-center top-4 right-4 w-[50px] h-[50px] bg-[#C7D5F1] rounded-full dark:bg-gray-700">
-        <FavoriteIcon className=" dark:text-light text-dark transition duration-300 group-hover:text-red-600 text-xl" />
+      <Div
+        onClick={(e) => handleAddOrRemove(e, { productId: product._id })}
+        className="absolute transition duration-200 group flex items-center justify-center top-4 right-4 w-[50px] h-[50px] bg-[#C7D5F1] rounded-full dark:bg-gray-700"
+      >
+        <FavoriteIcon
+          className={` ${
+            isFavorit
+              ? "text-red-600"
+              : "dark:text-light text-dark group-hover:text-red-600"
+          }  transition duration-300  text-xl`}
+        />
       </Div>
 
       {/* Product Image */}

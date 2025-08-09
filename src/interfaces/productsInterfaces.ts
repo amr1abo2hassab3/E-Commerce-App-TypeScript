@@ -4,6 +4,12 @@ export interface ProductsResponse {
   data: IProduct[]
 }
 
+export interface ProductWishListResponse {
+  status: string;
+  count: number;
+  data: IProduct[];
+}
+
 export interface Metadata {
   currentPage: number
   numberOfPages: number

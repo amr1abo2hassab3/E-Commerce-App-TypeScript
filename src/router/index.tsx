@@ -14,6 +14,7 @@ import { ResetPassword } from "../pages/ResetPassword ";
 import ProductDetails from "../pages/ProductDetails";
 import { CartPage } from "../pages/Cart";
 import CreateOrder from "../pages/CreateOrder";
+import WishListPage from "../pages/WishList";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute redirect="/login">
             <CartPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "wishList",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <WishListPage />
           </ProtectedRoute>
         ),
       },
