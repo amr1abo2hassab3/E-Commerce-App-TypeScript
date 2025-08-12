@@ -8,6 +8,9 @@ import type { ProductsResponse } from "../../interfaces/productsInterfaces";
 import CardItemSkeleton from "../skeleton/CardItemSkeleton";
 import Pagination from "../ui/Pagination";
 import PaginationSkeleton from "../skeleton/PaginationSkeleton";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../app/store";
+import { isFavorite } from "../../lib/utils";
 
 const CardItem = lazy(() => import("../CardItem"));
 
@@ -25,6 +28,9 @@ export const NewCollection = ({
   // state or hooks
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [pageLimit, setPageLimit] = useState<number>(10);
+  const { productsIdFavorite } = useSelector(
+    (state: RootState) => state.global
+  );
 
   // handler
   const { data, isLoading } = useGetDataQuery<ProductsResponse>({
@@ -61,7 +67,12 @@ export const NewCollection = ({
       <Div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-cols-1 gap-6 mt-20">
         {dataProducts?.map((product) => (
           <Suspense key={product._id} fallback={<CardItemSkeleton />}>
-            <CardItem key={product._id} product={product} color="#1976D2" />
+            <CardItem
+              key={product._id}
+              product={product}
+              color="#1976D2"
+              isFavorit={isFavorite(productsIdFavorite, product._id)}
+            />
           </Suspense>
         ))}
       </Div>

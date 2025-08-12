@@ -7,6 +7,9 @@ import type { ProductsResponse } from "../interfaces/productsInterfaces";
 import CardItemSkeleton from "../components/skeleton/CardItemSkeleton";
 import Pagination from "../components/ui/Pagination";
 import MessageUi from "../components/ui/MessageUi";
+import type { RootState } from "../app/store";
+import { useSelector } from "react-redux";
+import { isFavorite } from "../lib/utils";
 const CardItem = lazy(() => import("../components/CardItem"));
 
 const ProductsPage = () => {
@@ -17,6 +20,9 @@ const ProductsPage = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [sortPrice, setSortPrice] = useState<string>("");
+  const { productsIdFavorite } = useSelector(
+    (state: RootState) => state.global
+  );
   // handler
   const categoryQueryParams = selectedCategories
     .map((id) => `category[in]=${id}`)
@@ -93,6 +99,7 @@ const ProductsPage = () => {
                     key={product._id}
                     product={product}
                     color="#1976D2"
+                    isFavorit={isFavorite(productsIdFavorite, product._id)}
                   />
                 </Suspense>
               ))

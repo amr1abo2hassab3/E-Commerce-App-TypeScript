@@ -7,6 +7,8 @@ import useGetDataQuery from "../hooks/useGetDataQuery";
 import type { RespnseCategory } from "../interfaces/categorysInterfaces";
 
 const HomePage = () => {
+  // state or hooks
+
   // handler
   const { data } = useGetDataQuery<RespnseCategory>({
     queryKey: ["getAllCategories"],

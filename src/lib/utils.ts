@@ -41,4 +41,11 @@ export function toggleId(array: string[], id: string): string[] {
 }
 
 
+export function isFavorite(arr: string[], id: string) {
+  return arr.includes(id);
+}
+
+
+
+
 

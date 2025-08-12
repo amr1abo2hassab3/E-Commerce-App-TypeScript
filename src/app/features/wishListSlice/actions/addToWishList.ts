@@ -9,8 +9,6 @@ import type { addWishListResponse } from "../../../../interfaces/wishListInterfa
 import { toast } from "react-toastify";
 
 const userDataToken: IResponse | undefined = CookieServices.get(cookiesUserDataKey)
-
-
 export const addToWishList = createAsyncThunk<
   addWishListResponse,
   CartValues,
@@ -34,7 +32,7 @@ export const addToWishList = createAsyncThunk<
           error: "Failed to add product! ❌",
         },
         { autoClose: 1500 }
-      );
+    );
     return data;
   } catch (error) {
     const err = error as AxiosError<IApiError>;

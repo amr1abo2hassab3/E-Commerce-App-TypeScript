@@ -14,6 +14,8 @@ import { addToWishList } from "../app/features/wishListSlice/actions/addToWishLi
 import type { AppDispatch } from "../app/store";
 import { removeItemFromWishList } from "../app/features/wishListSlice/actions/removeFromWishlist";
 import { useQueryClient } from "@tanstack/react-query";
+import { setProductsIdFavorite } from "../app/features/global";
+import type { addWishListResponse } from "../interfaces/wishListInterfaces";
 
 interface CardItemProps {
   product: IProduct;
@@ -27,19 +29,29 @@ const CardItem = ({
   isFavorit = false,
 }: CardItemProps) => {
   const handleAddToCart = useAddToCart();
+
   const dispatch = useDispatch<AppDispatch>();
   const queryClient = useQueryClient();
 
   // Handle add or remove product from wishlist when user clicks the wishlist button.
-  const handleAddOrRemove = (
+  const handleAddOrRemove = async (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     values: CartValues
   ) => {
     e.preventDefault();
     if (isFavorit) {
-      dispatch(removeItemFromWishList(values));
-      queryClient.invalidateQueries({ queryKey: ["getAllWishlistProducts"] });
-    } else dispatch(addToWishList(values));
+      const result = await dispatch(removeItemFromWishList(values));
+      dispatch(
+        setProductsIdFavorite((result.payload as addWishListResponse).data)
+      );
+    } else {
+      const result = await dispatch(addToWishList(values));
+      dispatch(
+        setProductsIdFavorite((result.payload as addWishListResponse).data)
+      );
+    }
+
+    queryClient.invalidateQueries({ queryKey: ["getAllWishlistProducts"] });
   };
   return (
     <Link
