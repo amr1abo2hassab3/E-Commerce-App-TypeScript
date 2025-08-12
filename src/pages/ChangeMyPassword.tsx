@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { changePassowrdSchema, updateAccountSchema } from "../validation";
+import { changePassowrdSchema } from "../validation";
 import type {
   IApiError,
   IChangePassowrdValues,
