@@ -29,7 +29,6 @@ const CardItem = ({
   isFavorit = false,
 }: CardItemProps) => {
   const handleAddToCart = useAddToCart();
-
   const dispatch = useDispatch<AppDispatch>();
   const queryClient = useQueryClient();
 
@@ -53,6 +52,7 @@ const CardItem = ({
 
     queryClient.invalidateQueries({ queryKey: ["getAllWishlistProducts"] });
   };
+
   return (
     <Link
       to={`/productDetails/${product._id}`}

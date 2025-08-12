@@ -15,6 +15,8 @@ import ProductDetails from "../pages/ProductDetails";
 import { CartPage } from "../pages/Cart";
 import CreateOrder from "../pages/CreateOrder";
 import WishListPage from "../pages/WishList";
+import { UpdateAccountPage } from "../pages/UpdateAccount";
+import { ChangeMyPasswordPage } from "../pages/ChangeMyPassword";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +101,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute redirect="/login">
             <CreateOrder />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "update_account",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <UpdateAccountPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "change_my_password",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <ChangeMyPasswordPage />
           </ProtectedRoute>
         ),
       },

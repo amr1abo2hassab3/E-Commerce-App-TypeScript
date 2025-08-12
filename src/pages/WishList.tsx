@@ -21,6 +21,7 @@ const WishListPage = () => {
         token: userData.token,
       },
     },
+    enabled: !!userData?.token,
   });
 
   const count = data?.count || 0;

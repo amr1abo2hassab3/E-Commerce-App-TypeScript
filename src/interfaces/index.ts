@@ -1,11 +1,12 @@
 import type { ElementType } from "react";
 import type {
+  ChangePassowrdFieldName,
   CreateOrderFieldName,
   LoginFieldName,
   RegisterFieldName,
   ResetPasswordFieldName,
+  UpdateAccontFieldName,
 } from "../types";
-
 
 // authentication
 export interface ILoginInput {
@@ -23,6 +24,20 @@ export interface IRegisterInput {
 
 export interface ICreateOrderInput {
   name: CreateOrderFieldName;
+  placeholder: string;
+  type: string;
+  autoComplete?: string;
+}
+
+export interface IUpdateAccountInput {
+  name: UpdateAccontFieldName;
+  placeholder: string;
+  type: string;
+  autoComplete?: string;
+}
+
+export interface IChangePasswordInput {
+  name: ChangePassowrdFieldName;
   placeholder: string;
   type: string;
   autoComplete?: string;
@@ -47,6 +62,17 @@ export interface IRegisterValues {
   phone: string;
 }
 
+export interface IUpdateAccountValues {
+  name: string;
+  email: string;
+  phone: string;
+}
+export interface IChangePassowrdValues {
+  currentPassword: string;
+  password: string;
+  rePassword: string;
+}
+
 export interface IResponse {
   message: string;
   user: User;
@@ -62,6 +88,14 @@ export interface User {
 export interface IApiError {
   statusMsg: string;
   message: string;
+  errors?: IErrorsPayload;
+}
+
+export interface IErrorsPayload {
+  location: string;
+  msg: string;
+  param: string;
+  value: string;
 }
 
 export interface ISettings {

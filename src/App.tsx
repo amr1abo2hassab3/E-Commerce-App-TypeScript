@@ -30,6 +30,7 @@ function App() {
         token: userData?.token,
       },
     },
+    enabled: !!userData?.token,
   });
 
   const countWishlist = data?.count || 0;
@@ -46,6 +47,7 @@ function App() {
     if (data && productsIdFavorite) {
       dispatch(setProductsIdFavorite(productsIdFavorite));
       dispatch(setCountWishList(countWishlist));
+      dispatch(setCountWishList(data.count));
     }
   }, [data]);
 

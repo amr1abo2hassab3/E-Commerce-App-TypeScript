@@ -1,18 +1,20 @@
 import type {
-    ICreateOrderInput,
+  IChangePasswordInput,
+  ICreateOrderInput,
   ILoginInput,
   IRegisterInput,
   IResetPasswordInput,
   ISettings,
+  IUpdateAccountInput,
 } from "../interfaces";
 import img1 from "../assets/images/slider-image-1.jpeg";
 import img2 from "../assets/images/slider-image-2.jpeg";
 import img3 from "../assets/images/slider-image-3.jpeg";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LockResetIcon from '@mui/icons-material/LockReset';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LockResetIcon from "@mui/icons-material/LockReset";
 // Login input data
 export const LoginForm: ILoginInput[] = [
   {
@@ -26,6 +28,45 @@ export const LoginForm: ILoginInput[] = [
     placeholder: "Enter you Password",
     type: "password",
     autoComplete: "current-password",
+  },
+];
+
+export const UpdateAccountForm: IUpdateAccountInput[] = [
+  {
+    name: "name",
+    placeholder: "User Name",
+    type: "text",
+  },
+  {
+    name: "email",
+    placeholder: "Enter you email",
+    type: "email",
+    autoComplete: "userName",
+  },
+  {
+    name: "phone",
+    placeholder: "Phone number",
+    type: "text",
+  },
+];
+export const ChangePasswordForm: IChangePasswordInput[] = [
+  {
+    name: "currentPassword",
+    placeholder: "Current Password",
+    type: "password",
+    autoComplete: "current-password",
+  },
+  {
+    name: "password",
+    placeholder: "New Password",
+    type: "password",
+    autoComplete: "new-password",
+  },
+  {
+    name: "rePassword",
+    placeholder: " Confirm Password",
+    type: "password",
+    autoComplete: "new-password",
   },
 ];
 
@@ -82,7 +123,7 @@ export const settings: ISettings[] = [
   {
     name: "cart",
     path: "/cart",
-    icon: ShoppingCartIcon,  
+    icon: ShoppingCartIcon,
   },
   {
     name: "wish List",
@@ -125,8 +166,7 @@ export const tableHeading: string[] = [
 ];
 
 // data input create order
-
-export const createOrderForm:ICreateOrderInput[] = [
+export const createOrderForm: ICreateOrderInput[] = [
   {
     name: "details",
     placeholder: "Enter Your Details Address",
@@ -144,7 +184,6 @@ export const createOrderForm:ICreateOrderInput[] = [
   },
 ];
 
-
 // url navigate in payment
 
-export const urlNavigate:string = "http://localhost:5173"
+export const urlNavigate: string = "http://localhost:5173";
