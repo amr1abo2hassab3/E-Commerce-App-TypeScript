@@ -17,6 +17,8 @@ import CreateOrder from "../pages/CreateOrder";
 import WishListPage from "../pages/WishList";
 import { UpdateAccountPage } from "../pages/UpdateAccount";
 import { ChangeMyPasswordPage } from "../pages/ChangeMyPassword";
+import OrdersPage from "../pages/Orders";
+import { AddNewAddress } from "../pages/AddNewAddress";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +103,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute redirect="/login">
             <CreateOrder />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "allorders",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <OrdersPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "addNewAddress",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <AddNewAddress />
           </ProtectedRoute>
         ),
       },

@@ -2,14 +2,13 @@ import { AxiosError } from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { updateAccountSchema } from "../validation";
-import type { IApiError, IResponse, IUpdateAccountValues } from "../interfaces";
+import { addressSchema } from "../validation";
+import type { IApiError, IResponse } from "../interfaces";
 import Div from "../components/ui/Div";
 import Heading from "../components/ui/Heading";
-import EditSquareIcon from "@mui/icons-material/EditSquare";
 import Paragraph from "../components/ui/Paragraph";
 import Form from "../components/ui/Form";
-import { cookiesUserDataKey, UpdateAccountForm } from "../data";
+import { AddingAddressForm, cookiesUserDataKey } from "../data";
 import Button from "../components/ui/Button";
 import Span from "../components/ui/Span";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
@@ -17,30 +16,32 @@ import InputErroMessage from "../components/ui/InputErroMessage";
 import Input from "../components/ui/Input";
 import axiosInstance from "../config/axios.config";
 import CookieServices from "../Services/CookieServices";
+import type { AddressValues } from "../interfaces/orderInterfaces";
 const userData: IResponse = CookieServices.get(cookiesUserDataKey);
 
-export const UpdateAccountPage = () => {
+export const AddNewAddress = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>("");
 
-  const initialValues: IUpdateAccountValues = {
+  const initialValues: AddressValues = {
     name: "",
-    email: "",
+    details: "",
     phone: "",
+    city: "",
   };
 
-  const handleUpdateData = async (values: IUpdateAccountValues) => {
+  const handleAddNewAddress = async (values: AddressValues) => {
     setIsLoading(true);
-    const request = axiosInstance.put(`/api/v1/users/updateMe/`, values, {
+    const request = axiosInstance.post(`/api/v1/addresses`, values, {
       headers: { token: userData?.token },
     });
     try {
       await toast.promise(
         request,
         {
-          pending: "Updating Data...",
-          success: "Data Updated successfully! ✈",
-          error: "Failed To Update Data ❌",
+          pending: "Adding Address...",
+          success: "Adrress Added successfully! ✈",
+          error: "Failed To Add This Address ❌",
         },
         { autoClose: 5000 }
       );
@@ -69,12 +70,12 @@ export const UpdateAccountPage = () => {
     touched,
   } = useFormik({
     initialValues,
-    validationSchema: updateAccountSchema,
-    onSubmit: handleUpdateData,
+    validationSchema: addressSchema,
+    onSubmit: handleAddNewAddress,
   });
 
   // render
-  const renderInput = UpdateAccountForm.map((input) => (
+  const renderInput = AddingAddressForm.map((input) => (
     <label htmlFor={input.name} key={input.name}>
       <Paragraph className="font-bold text-slate-700 pb-2 capitalize dark:text-gray-200">
         {input.name}
@@ -99,10 +100,10 @@ export const UpdateAccountPage = () => {
   return (
     <Div className="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300 dark:bg-gray-800 dark:text-white dark:shadow-gray-700">
       <Heading as="h1" className="text-4xl font-semibold capitalize">
-        Update Your Account <EditSquareIcon />
+        Add New Address
       </Heading>
       <Paragraph className="text-slate-500 font-bold dark:text-gray-300">
-        Fill up the form to Update Your Data
+        Fill up the form to Add New Address
       </Paragraph>
 
       {errorMessage && (
@@ -124,8 +125,7 @@ export const UpdateAccountPage = () => {
               <LoadingSpinner />
             ) : (
               <>
-                <Span className="font-bold capitalize">Update Data</Span>
-                <EditSquareIcon />{" "}
+                <Span className="font-bold capitalize">Add new address</Span>
               </>
             )}
           </Button>

@@ -15,6 +15,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LockResetIcon from "@mui/icons-material/LockReset";
+import type { IAddingAddresInput } from "../interfaces/orderInterfaces";
 // Login input data
 export const LoginForm: ILoginInput[] = [
   {
@@ -49,6 +50,31 @@ export const UpdateAccountForm: IUpdateAccountInput[] = [
     type: "text",
   },
 ];
+
+export const AddingAddressForm: IAddingAddresInput[] = [
+  {
+    name: "name",
+    placeholder: "name address",
+    type: "text",
+  },
+  {
+    name: "details",
+    placeholder: "Details Address",
+    type: "text",
+    autoComplete: "userName",
+  },
+  {
+    name: "phone",
+    placeholder: "Phone number",
+    type: "text",
+  },
+  {
+    name: "city",
+    placeholder: "Phone number",
+    type: "text",
+  },
+];
+
 export const ChangePasswordForm: IChangePasswordInput[] = [
   {
     name: "currentPassword",

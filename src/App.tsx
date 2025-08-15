@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
   setCountWishList,
+  setJwtDecode,
   setProductsIdFavorite,
   setTokenFromCookie,
 } from "./app/features/global";
@@ -13,7 +14,9 @@ import CookieServices from "./Services/CookieServices";
 import { cookiesUserDataKey } from "./data";
 import useGetDataQuery from "./hooks/useGetDataQuery";
 import type { ProductWishListResponse } from "./interfaces/productsInterfaces";
-import type { IResponse } from "./interfaces";
+import type { IResponse, JWtDecode } from "./interfaces";
+import { jwtDecode } from "jwt-decode";
+
 const userData: IResponse = CookieServices.get(cookiesUserDataKey) || null;
 
 function App() {
@@ -37,9 +40,11 @@ function App() {
   const productsIdFavorite = data?.data.map((product) => product._id);
 
   useEffect(() => {
-    const token = CookieServices.get(cookiesUserDataKey);
+    const token: IResponse = CookieServices.get(cookiesUserDataKey);
     if (token) {
+      const decoded: JWtDecode = jwtDecode(token.token);
       dispatch(setTokenFromCookie(token));
+      dispatch(setJwtDecode(decoded));
     }
   }, []);
 

@@ -11,7 +11,7 @@ interface MessageUiProps {
 
 const MessageUi = ({ description, heading, children }: MessageUiProps) => {
   return (
-    <Div className="col-span-full  flex flex-col items-center justify-center mt-20 text-center p-10 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+    <Div className="col-span-full w-full flex flex-col items-center justify-center mt-20 text-center p-10 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
       <Heading className="text-2xl font-semibold text-gray-700 dark:text-gray-300">
         {heading}
       </Heading>

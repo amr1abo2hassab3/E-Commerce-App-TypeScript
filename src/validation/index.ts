@@ -71,4 +71,29 @@ export const changePassowrdSchema =  Yup.object().shape({
     rePassword: Yup.string()
       .oneOf([Yup.ref("password")], "The password does not match !")
       .required("Password confirmation is required. !"),
-  });
+});
+  
+export const addressSchema = Yup.object().shape({
+  name: Yup.string()
+    .matches(
+      /^[a-zA-Z\s]{3,16}$/,
+      "Name must be between 3 and 16 letters."
+    )
+    .required("Name is required!"),
+
+  details: Yup.string()
+    .min(5, "Details must be at least 5 characters long.")
+    .max(100, "Details cannot exceed 100 characters.")
+    .required("Details are required!"),
+
+  phone: Yup.string()
+    .matches(/^(\+02)?01[0125][0-9]{8}$/, "Enter a valid Egyptian phone number.")
+    .required("Phone number is required!"),
+
+  city: Yup.string()
+    .matches(
+      /^[a-zA-Z\s]{3,21}$/,
+      "City name must be between 3 and 21 letters."
+    )
+    .required("City is required!"),
+});

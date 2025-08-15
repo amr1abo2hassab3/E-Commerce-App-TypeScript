@@ -79,6 +79,14 @@ export interface IResponse {
   token: string;
 }
 
+export interface JWtDecode {
+  id: string,
+  name: string,
+  role: string,
+  iat: number,
+  exp: number,
+}
+
 export interface User {
   name: string;
   email: string;
