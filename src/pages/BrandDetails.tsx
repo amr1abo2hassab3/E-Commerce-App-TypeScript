@@ -55,6 +55,7 @@ export const BrandDetails = () => {
 
       {dataDetails && (
         <NewCollection
+          notFound={true}
           idBrand={dataDetails?._id}
           category={dataDetails?.name || ""}
           queryKey={[`${dataDetails?.name}`, dataDetails?._id || ""]}

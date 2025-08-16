@@ -55,6 +55,7 @@ export const CategoryDetails = () => {
 
       {dataDetails && (
         <NewCollection
+          notFound={true}
           idCategory={dataDetails?._id}
           category={dataDetails?.name || ""}
           queryKey={[`${dataDetails?.name}`, dataDetails?._id || ""]}

@@ -20,7 +20,7 @@ const HomePage = () => {
   const renderNewCollection = categories?.map((cat) => (
     <NewCollection
       key={cat._id}
-      id={cat._id}
+      idCategory={cat._id}
       category={cat.name}
       queryKey={[`${cat.name}`, cat._id]}
     />

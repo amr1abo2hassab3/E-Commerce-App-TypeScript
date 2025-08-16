@@ -16,6 +16,7 @@ import MessageUi from "../ui/MessageUi";
 const CardItem = lazy(() => import("../CardItem"));
 
 interface NewCollectionProps {
+  notFound?: boolean;
   idCategory?: string;
   idBrand?: string;
   category: string;
@@ -27,6 +28,7 @@ export const NewCollection = ({
   idBrand,
   category,
   queryKey,
+  notFound = false,
 }: NewCollectionProps) => {
   // state or hooks
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -93,10 +95,10 @@ export const NewCollection = ({
         setPageLimit={setPageLimit}
       />
     </Div>
-  ) : (
+  ) : notFound ? (
     <MessageUi
       heading="No products found"
       description={`No Products Found in this ${category}`}
     />
-  );
+  ) : null;
 };

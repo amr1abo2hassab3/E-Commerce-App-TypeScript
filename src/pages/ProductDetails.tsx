@@ -29,9 +29,7 @@ export default function ProductDetails() {
   return (
     <section className="mx-auto container">
       {isLoading && <ProductDetailsSkeleton />}
-      <Suspense fallback={<ProductDetailsSkeleton />}>
-        {product && <ProductDetailsContent product={product} />}
-      </Suspense>
+      {product && <ProductDetailsContent product={product} />}
 
       <Suspense fallback={<CardItemSkeleton />}>
         {product && (

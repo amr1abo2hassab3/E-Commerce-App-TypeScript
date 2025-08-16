@@ -22,7 +22,7 @@ import { AddNewAddress } from "../pages/AddNewAddress";
 import Brands from "../pages/Brands";
 import { BrandDetails } from "../pages/BrandDetails";
 import Category from "../pages/Category";
-import { CategoryDetails } from "../components/category/categoryDetails";
+import { CategoryDetails } from "../components/category/CategoryDetails";
 
 const router = createBrowserRouter([
   {
