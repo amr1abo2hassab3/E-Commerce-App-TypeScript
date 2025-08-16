@@ -19,6 +19,10 @@ import { UpdateAccountPage } from "../pages/UpdateAccount";
 import { ChangeMyPasswordPage } from "../pages/ChangeMyPassword";
 import OrdersPage from "../pages/Orders";
 import { AddNewAddress } from "../pages/AddNewAddress";
+import Brands from "../pages/Brands";
+import { BrandDetails } from "../pages/BrandDetails";
+import Category from "../pages/Category";
+import { CategoryDetails } from "../components/category/categoryDetails";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +87,22 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "brands",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <Brands />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "category",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <Category />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "cart",
         element: (
           <ProtectedRoute redirect="/login">
@@ -143,6 +163,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute redirect="/login">
             <ProductDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "brandDetails/:id",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <BrandDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "categoryDetails/:id",
+        element: (
+          <ProtectedRoute redirect="/login">
+            <CategoryDetails />
           </ProtectedRoute>
         ),
       },

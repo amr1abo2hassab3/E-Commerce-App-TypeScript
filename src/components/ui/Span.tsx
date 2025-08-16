@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Span = ({ children, ...rest }: SpanProps) => {

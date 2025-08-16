@@ -11,17 +11,20 @@ import PaginationSkeleton from "../skeleton/PaginationSkeleton";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { isFavorite } from "../../lib/utils";
+import MessageUi from "../ui/MessageUi";
 
 const CardItem = lazy(() => import("../CardItem"));
 
 interface NewCollectionProps {
-  id: string;
+  idCategory?: string;
+  idBrand?: string;
   category: string;
   queryKey: string[];
 }
 
 export const NewCollection = ({
-  id,
+  idCategory,
+  idBrand,
   category,
   queryKey,
 }: NewCollectionProps) => {
@@ -35,8 +38,11 @@ export const NewCollection = ({
   // handler
   const { data, isLoading } = useGetDataQuery<ProductsResponse>({
     queryKey: [...queryKey, `${pageNumber}`, `${pageLimit}`],
-    url: `/api/v1/products?category[in]=${id}&page=${pageNumber}&limit=${pageLimit}`,
+    url: `/api/v1/products?${idCategory ? `category[in]=${idCategory}` : ""}&${
+      idBrand ? `brand=${idBrand}` : ""
+    }&page=${pageNumber}&limit=${pageLimit}`,
   });
+
   const dataProducts = data?.data;
   const totalPages = data?.metadata?.numberOfPages || 1;
   const totalCount = data?.results || data?.data?.length || 0;
@@ -87,5 +93,10 @@ export const NewCollection = ({
         setPageLimit={setPageLimit}
       />
     </Div>
-  ) : null;
+  ) : (
+    <MessageUi
+      heading="No products found"
+      description={`No Products Found in this ${category}`}
+    />
+  );
 };

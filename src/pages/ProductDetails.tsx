@@ -36,7 +36,7 @@ export default function ProductDetails() {
       <Suspense fallback={<CardItemSkeleton />}>
         {product && (
           <NewCollection
-            id={product?.category._id}
+            idCategory={product?.category._id}
             category={product?.category.name}
             queryKey={[`${product?.category.name}`, product?.category._id]}
           />
