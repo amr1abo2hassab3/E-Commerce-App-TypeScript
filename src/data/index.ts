@@ -212,4 +212,4 @@ export const createOrderForm: ICreateOrderInput[] = [
 
 // url navigate in payment
 
-export const urlNavigate: string = "https://e-commerce-app-type-script.vercel.app/";
+export const urlNavigate: string = "https://e-commerce-app-type-script-git-finall-amr-abo-hassabs-projects.vercel.app/";

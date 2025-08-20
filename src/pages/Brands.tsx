@@ -14,7 +14,7 @@ const Brands = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [pageLimit, setPageLimit] = useState<number>(10);
   const { data, isLoading } = useGetDataQuery<BrandResponse>({
-    queryKey: ["getAllBrands"],
+    queryKey: ["getAllBrands", `${pageNumber}`, `${pageLimit}`],
     url: `/api/v1/brands?page=${pageNumber}&limit=${pageLimit}`,
   });
 

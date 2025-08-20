@@ -14,7 +14,7 @@ const Category = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [pageLimit, setPageLimit] = useState<number>(10);
   const { data, isLoading } = useGetDataQuery<BrandResponse>({
-    queryKey: ["getAllCategories"],
+    queryKey: ["getAllCategories", `${pageNumber}`, `${pageLimit}`],
     url: `/api/v1/categories?page=${pageNumber}&limit=${pageLimit}`,
   });
 
