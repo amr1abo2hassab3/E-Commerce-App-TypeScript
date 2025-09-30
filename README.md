@@ -1,7 +1,7 @@
-## 📦 React Notes Manager App
+## 🏪 React E-Commerce App
 
-A clean React + TypeScript application to manage a list of personal notes.  
-You can **add**, **edit**, **delete**, and **view** notes — each with title, content, created date, and updated date.
+A modern React + TypeScript E-commerce application that provides a full online shopping experience.  
+Users can browse products, manage carts, place orders, and make secure payments — all with responsive design and smooth user experience.
 
 ---
 
